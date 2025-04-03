@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { Button } from "./ui/Button";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import { Textarea } from "./ui/textarea";
+import { Input } from "./ui/Input";
+import { Label } from "./ui/Label";
+import { Textarea } from "./ui/Textarea";
 import { toast } from "sonner";
 import { CheckCircle, Loader2 } from "lucide-react";
 
