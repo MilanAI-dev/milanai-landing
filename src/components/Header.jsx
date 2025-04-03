@@ -77,14 +77,16 @@ export default function Header() {
 
         <div className="flex items-center gap-4">
           <Button asChild variant="outline" className="hidden md:flex">
-            <a href="#waitlist">Join Waitlist</a>
+            <a href="/#waitlist">Join Waitlist</a>
           </Button>
-          <Button className="hidden md:flex">Learn More</Button>
           <Button
+            key={isMenuOpen}
             variant="ghost"
             size="icon"
             className="md:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={() => {
+              setIsMenuOpen((prev) => !prev);
+            }}
             aria-expanded={isMenuOpen}
             aria-label="Toggle menu"
           >
@@ -98,13 +100,13 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Modified to open downward */}
       <div
         ref={menuRef}
         className={cn(
-          "fixed inset-0 top-16 z-50 bg-white md:hidden",
-          "transform transition-transform duration-300 ease-in-out",
-          isMenuOpen ? "translate-x-0" : "translate-x-full"
+          "absolute left-0 right-0 z-40 bg-white md:hidden shadow-lg",
+          "transform transition-all duration-300 ease-in-out overflow-hidden",
+          isMenuOpen ? "max-h-[500px] border-b" : "max-h-0"
         )}
       >
         <div className="flex flex-col p-6 space-y-6 bg-white">

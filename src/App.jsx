@@ -29,12 +29,16 @@ export default function Home() {
                   switching between apps.
                 </p>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                  <Button size="lg" className="gap-1.5">
-                    Join Waitlist <ChevronRight className="h-4 w-4" />
-                  </Button>
-                  <Button size="lg" variant="outline">
-                    Learn More
-                  </Button>
+                  <a href="/#waitlist">
+                    <Button size="lg" className="gap-1.5">
+                      Join Waitlist <ChevronRight className="h-4 w-4" />
+                    </Button>
+                  </a>
+                  <a href="/#features">
+                    <Button size="lg" variant="outline">
+                      Learn More
+                    </Button>
+                  </a>
                 </div>
               </div>
               <div className="flex justify-center lg:justify-end">
