@@ -28,17 +28,20 @@ export default function WaitlistForm() {
     e.preventDefault();
     setIsSubmitting(true);
 
+    const formData = new FormData(e.target);
+
     try {
-      await fetch(
-        "https://script.google.com/macros/s/AKfycbz-wOp59gkVtGLoNHW5R5MJ5zQmRWlgQIs1mRWP8wbasG9IZ3cHAQLDrHDODu8k3tdH/exec",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const res = await fetch("https://formspree.io/f/mnnpgvjp", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: formData,
+      });
+
+      if (!res.ok) {
+        throw new Error("Network response was not ok");
+      }
 
       setIsSubmitted(true);
       toast.success("Thank you for joining our waitlist!");
