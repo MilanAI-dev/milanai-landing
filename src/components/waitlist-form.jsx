@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { Button } from "./ui/Button";
-import { Input } from "./ui/Input";
-import { Label } from "./ui/Label";
-import { Textarea } from "./ui/Textarea";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import { Textarea } from "./ui/textarea";
 import { toast } from "sonner";
 import { CheckCircle, Loader2 } from "lucide-react";
 
@@ -28,25 +28,23 @@ export default function WaitlistForm() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // This is where you would add your form submission logic
-    // For now, we'll simulate a submission with a timeout
-
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbz-wOp59gkVtGLoNHW5R5MJ5zQmRWlgQIs1mRWP8wbasG9IZ3cHAQLDrHDODu8k3tdH/exec",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       setIsSubmitted(true);
-      toast({
-        title: "Success!",
-        description:
-          "You've been added to our waitlist. We'll be in touch soon!",
-      });
-    } catch {
-      toast({
-        title: "Something went wrong.",
-        description: "Your submission failed. Please try again.",
-        variant: "destructive",
-      });
+      toast.success("Thank you for joining our waitlist!");
+    } catch (error) {
+      console.error("Submission error:", error);
+      toast.error("There was an error submitting your form. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -126,7 +124,7 @@ export default function WaitlistForm() {
         {isSubmitting ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            Submitting...
+            <span>Submitting...</span>
           </>
         ) : (
           "Join Waitlist"
